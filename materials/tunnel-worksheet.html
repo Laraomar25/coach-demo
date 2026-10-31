@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ورقة التطبيق العملي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--blue:#2563EB;--blue-l:#EFF6FF;--sky:#93C5FD;--navy:#0F172A;--head:#1E293B;--text:#475569;--muted:#64748B;--card:#F8FAFC;--line:#E2E8F0;--ink:#0B0F19;--green:#4ADE80;--ok-bg:#F0FDF4;--ok:#166534;--warn-bg:#FFFBEB;--warn:#92400E;--red-bg:#FEF2F2;--red:#991B1B}
+*{box-sizing:border-box}
+body{margin:0;background:#F1F5F9;color:var(--text);font-family:'Cairo',Tahoma,Arial,sans-serif;font-size:17px;line-height:1.75}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 60px}
+header{background:var(--navy);color:#fff;padding:40px 16px 34px;margin-bottom:28px;border-bottom:6px solid var(--blue)}
+header .in{max-width:980px;margin:0 auto}
+header .badge{display:inline-block;font-size:14px;font-weight:700;border:2px solid var(--blue);background:#1E293B;border-radius:999px;padding:3px 16px;color:#EFF6FF}
+header h1{font-size:34px;line-height:1.35;margin:12px 0 6px}
+header p{color:#94A3B8;margin:0}
+h2{font-size:25px;color:var(--head);margin:38px 0 14px;display:flex;align-items:center;gap:12px}
+h2 .ic{width:40px;height:40px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:18px;flex:none}
+h3{font-size:19px;color:var(--head);margin:0 0 6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.step{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin-bottom:16px;border-right:5px solid var(--blue)}
+.step .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px}
+.step .n{width:34px;height:34px;border-radius:9px;background:var(--blue);color:#fff;display:grid;place-items:center;font:600 16px 'IBM Plex Mono',monospace;flex:none}
+.where{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#fff;background:var(--blue);padding:2px 12px;border-radius:999px}
+.where.t2{background:#7C3AED} .where.web{background:#0891B2}
+dl{display:grid;grid-template-columns:130px 1fr;gap:4px 14px;margin:12px 0 0}
+dt{font-weight:700;color:var(--head)} dd{margin:0}
+.cmd{position:relative;background:var(--ink);border-right:5px solid var(--blue);border-radius:10px;padding:14px 18px;padding-left:92px;direction:ltr;text-align:left;font:500 14.5px/1.7 'IBM Plex Mono',monospace;color:#E2E8F0;white-space:pre-wrap;word-break:break-all;margin:10px 0}
+.cmd .c{color:#64748B} .cmd .g{color:var(--green)}
+.copy{position:absolute;left:10px;top:10px;font:600 13px 'Cairo',sans-serif;color:#E2E8F0;background:#1E293B;border:1px solid #334155;border-radius:7px;padding:3px 12px;cursor:pointer}
+.copy:hover{background:var(--blue)} .copy.done{background:#166534}
+.out{background:#F1F5F9;border:1px solid var(--line);border-radius:8px;padding:10px 16px;direction:ltr;text-align:left;font:500 13.5px/1.6 'IBM Plex Mono',monospace;color:var(--head);white-space:pre;overflow:auto}
+.en{direction:ltr;unicode-bidi:isolate;font-family:'IBM Plex Mono',monospace;font-size:.9em;background:#F1F5F9;color:var(--head);padding:0 7px;border-radius:5px}
+.box{border-radius:10px;padding:12px 18px;display:flex;gap:12px;align-items:flex-start;margin:12px 0}
+.box i{margin-top:6px}
+.tip{background:var(--ok-bg);border:1px solid #BBF7D0;color:var(--ok)}
+.warn{background:var(--warn-bg);border:1px solid #FDE68A;color:var(--warn)}
+.bad{background:var(--red-bg);border:1px solid #FECACA;color:var(--red)}
+.info{background:var(--blue-l);border:1px solid #BFDBFE;color:var(--head)} .info i{color:var(--blue)}
+table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:15px}
+th{background:var(--card);color:var(--head);text-align:right;padding:10px 14px;border-bottom:2px solid var(--line)}
+td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-weight:700;color:var(--head)}
+tr:last-child td{border-bottom:none}
+.table-wrap{overflow-x:auto}
+ul{margin:6px 0;padding-inline-start:22px}
+.src li{direction:ltr;text-align:left;font-size:14px}
+.src li span{direction:rtl;display:inline-block;font-family:'Cairo',sans-serif;font-size:15px}
+footer{margin-top:40px;color:var(--muted);font-size:14px;text-align:center}
+@media print{body{background:#fff}.copy{display:none}header{-webkit-print-color-adjust:exact;print-color-adjust:exact}.step,.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <span class="badge">ورقة التطبيق العملي</span>
+  <h1>نشر صفحة محلية عبر Cloudflare Tunnel</h1>
+  <p>مرافقة لعرض «فهم الأنفاق في Cloudflare وآلية استخدامها عمليًا» · الزمن المقترح للجزء (أ): حوالي 25 دقيقة</p>
+</div></header>
+
+<div class="wrap">
+
+<h2><span class="ic"><i class="fa-solid fa-clipboard-check"></i></span>قبل أن تبدأ</h2>
+<div class="grid">
+  <div class="card"><h3>للجزء (أ): النفق السريع</h3><ul><li>جهاز Ubuntu متصل بالإنترنت</li><li>كلمة مرور جهازك (لأوامر <span class="en">sudo</span>)</li><li>هاتف فيه بيانات جوال</li><li>لا تحتاج حساب Cloudflare ولا دومين</li></ul></div>
+  <div class="card"><h3>للجزء (ب): النفق المُدار</h3><ul><li>كل ما في الجزء (أ)</li><li>حساب Cloudflare</li><li>دومين مُضاف إلى Cloudflare</li></ul></div>
+  <div class="card"><h3>نافذتان</h3><p style="margin:0"><span class="where"><i class="fa-solid fa-terminal"></i> Terminal 1</span> للموقع<br><span class="where t2"><i class="fa-solid fa-terminal"></i> Terminal 2</span> للنفق<br>افتح أي نافذة بـ <span class="en">Ctrl+Alt+T</span></p></div>
+</div>
+<div class="box info"><i class="fa-solid fa-shield-halved"></i><div>نعمل في مجلد تجريبي منفصل، وبصفحة تجريبية لا تحتوي أي بيانات شخصية. لا تضع في المجلد ملفات خاصة، لأن كل ما فيه سيصبح متاحًا عبر الرابط العام.</div></div>
+
+<h2><span class="ic"><i class="fa-solid fa-bolt"></i></span>الجزء (أ): النفق السريع خطوة بخطوة</h2>
+
+<div class="step">
+  <div class="top"><span class="n">1</span><h3>إنشاء مجلد التجربة والدخول إليه</h3><span class="where"><i class="fa-solid fa-terminal"></i> Terminal 1</span></div>
+  <div class="cmd"><button class="copy">نسخ</button>mkdir -p ~/tunnel-demo
+cd ~/tunnel-demo</div>
+  <dl><dt>وظيفته</dt><dd>ينشئ مجلدًا باسم <span class="en">tunnel-demo</span> داخل مجلد المستخدم (الرمز <span class="en">~</span>)، ثم ندخل إليه.</dd>
+  <dt>المتوقع</dt><dd>لا تظهر أي رسالة؛ وهذا يعني النجاح.</dd>
+  <dt>تحقّق</dt><dd>نفّذ <span class="en">pwd</span>، فيظهر مسار ينتهي بـ <span class="en">/tunnel-demo</span>.</dd></dl>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">2</span><h3>إنشاء صفحة HTML بسيطة</h3><span class="where"><i class="fa-solid fa-terminal"></i> Terminal 1</span></div>
+  <div class="cmd"><button class="copy">نسخ</button>cat &gt; index.html &lt;&lt;'EOF'
+&lt;!doctype html&gt;&lt;meta charset="utf-8"&gt;
+&lt;h1 dir="rtl"&gt;مرحبًا! هذه الصفحة تعمل على جهازي&lt;/h1&gt;
+EOF</div>
+  <dl><dt>وظيفته</dt><dd>يكتب ملفًا اسمه <span class="en">index.html</span> فيه جملة ترحيب. الصفحة التي اسمها index تُعرض تلقائيًا.</dd>
+  <dt>المتوقع</dt><dd>لا تظهر رسالة.</dd>
+  <dt>تحقّق</dt><dd>نفّذ <span class="en">ls</span> فيظهر <span class="en">index.html</span>.</dd>
+  <dt>بديل أسهل</dt><dd>افتح محرر النصوص (Text Editor)، واكتب الأسطر الثلاثة الوسطى، واحفظها باسم <span class="en">index.html</span> داخل المجلد <span class="en">tunnel-demo</span>.</dd></dl>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">3</span><h3>تشغيل خادم تطوير محلي</h3><span class="where"><i class="fa-solid fa-terminal"></i> Terminal 1</span></div>
+  <div class="cmd"><button class="copy">نسخ</button>python3 -m http.server 8000 --bind 127.0.0.1</div>
+  <dl><dt>وظيفته</dt><dd>يشغّل خادمًا صغيرًا مدمجًا في Python يعرض ملفات المجلد على المنفذ 8000، ويقبل الاتصال من هذا الجهاز فقط.</dd>
+  <dt>المتوقع</dt><dd><div class="out">Serving HTTP on 127.0.0.1 port 8000 (http://127.0.0.1:8000/) ...</div></dd>
+  <dt>تحقّق</dt><dd>افتح المتصفح على <span class="en">http://localhost:8000</span> فتظهر جملة الترحيب.</dd></dl>
+  <div class="box warn"><i class="fa-solid fa-triangle-exclamation"></i><div>اترك هذه النافذة مفتوحة. الأمر لا ينتهي ما دام الخادم يعمل؛ هذا طبيعي.</div></div>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">4</span><h3>تثبيت cloudflared من مستودع Cloudflare الرسمي</h3><span class="where t2"><i class="fa-solid fa-terminal"></i> Terminal 2 (نافذة جديدة)</span></div>
+  <div class="cmd"><button class="copy">نسخ</button><span class="c"># أ) مفتاح المستودع</span>
+sudo mkdir -p --mode=0755 /usr/share/keyrings
+curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg &gt;/dev/null</div>
+  <div class="cmd"><button class="copy">نسخ</button><span class="c"># ب) إضافة المستودع</span>
+echo 'deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared any main' | sudo tee /etc/apt/sources.list.d/cloudflared.list</div>
+  <div class="cmd"><button class="copy">نسخ</button><span class="c"># ج) التثبيت</span>
+sudo apt-get update &amp;&amp; sudo apt-get install cloudflared</div>
+  <dl><dt>وظيفته</dt><dd>نضيف «متجر البرامج» الرسمي لـ Cloudflare ومفتاحه الذي يثبت أصالة البرامج، ثم نثبّت cloudflared منه.</dd>
+  <dt>المتوقع</dt><dd>يطلب كلمة مرور جهازك (لا تظهر أثناء الكتابة)، ثم قد يسأل <span class="en">Do you want to continue? [Y/n]</span> فاكتب <span class="en">y</span> ثم Enter.</dd>
+  <dt>تحقّق</dt><dd><div class="cmd"><button class="copy">نسخ</button>cloudflared --version</div>يظهر سطر يبدأ بـ <span class="en">cloudflared version</span> متبوعًا برقم الإصدار.</dd></dl>
+  <div class="box info"><i class="fa-solid fa-circle-info"></i><div>إن ظهر <span class="en">curl: command not found</span> نفّذ أولًا: <span class="en">sudo apt-get install curl</span></div></div>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">5</span><h3>تشغيل النفق السريع</h3><span class="where t2"><i class="fa-solid fa-terminal"></i> Terminal 2</span></div>
+  <div class="cmd"><button class="copy">نسخ</button>cloudflared tunnel --url http://localhost:8000</div>
+  <dl><dt>وظيفته</dt><dd>يفتح نفقًا مؤقتًا إلى Cloudflare، ويوجّه كل ما يصله إلى الخادم على المنفذ 8000.</dd>
+  <dt>المتوقع</dt><dd>سطور كثيرة، وبينها مربع فيه رابط ينتهي بـ <span class="en">trycloudflare.com</span> (شكل تقريبي):<div class="out">|  Your quick Tunnel has been created! Visit it at ...  |
+|  <span style="color:var(--ok);font-weight:600">https://random-words-here.trycloudflare.com</span>          |</div></dd>
+  <dt>تحقّق</dt><dd>افتح الرابط في متصفح اللابتوب أولًا، فتظهر الصفحة نفسها.</dd></dl>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">6</span><h3>الاختبار من الهاتف</h3><span class="where web"><i class="fa-solid fa-mobile-screen"></i> الهاتف</span></div>
+  <ul><li><b>أطفئ الواي فاي</b> في الهاتف، واستخدم بيانات الجوال.</li><li>أرسل الرابط إلى هاتفك (برسالة لنفسك مثلًا)، وافتحه.</li></ul>
+  <dl><dt>المتوقع</dt><dd>تظهر جملة الترحيب على الهاتف: صفحتك وصلت من الإنترنت.</dd>
+  <dt>إن لم تظهر</dt><dd>انتظر بضع ثوانٍ وأعد المحاولة، وتأكد أن النافذتين ما زالتا تعملان.</dd></dl>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">7</span><h3>تجارب الإيقاف (لفهم الاعتماديات)</h3></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>التجربة</th><th>كيف؟</th><th>النتيجة المتوقعة على الهاتف</th></tr></thead>
+    <tbody>
+      <tr><td>إيقاف الخادم</td><td><span class="en">Ctrl+C</span> في Terminal 1، ثم حدّث الصفحة على الهاتف</td><td>صفحة خطأ من Cloudflare (غالبًا 502)</td></tr>
+      <tr><td>إعادة الخادم</td><td>في Terminal 1: السهم الأعلى ↑ ثم Enter</td><td>الصفحة تعود بعد التحديث</td></tr>
+      <tr><td>إيقاف النفق</td><td><span class="en">Ctrl+C</span> في Terminal 2</td><td>الرابط يتوقف نهائيًا</td></tr>
+      <tr><td>إعادة النفق</td><td>في Terminal 2: ↑ ثم Enter</td><td>يظهر <b>رابط جديد مختلف</b></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="step" style="border-right-color:#0891B2">
+  <div class="top"><span class="n">8</span><h3>إيقاف التجربة وتنظيف ما أنشأناه فقط</h3></div>
+  <ol>
+    <li>اضغط <span class="en">Ctrl+C</span> في Terminal 2 ثم في Terminal 1.</li>
+    <li>تأكد من محتوى مجلد التجربة قبل حذفه:<div class="cmd"><button class="copy">نسخ</button>cd ~
+ls ~/tunnel-demo</div>المتوقع: <span class="en">index.html</span> فقط.</li>
+    <li>احذف مجلد التجربة وحده:<div class="cmd"><button class="copy">نسخ</button>rm -r ~/tunnel-demo</div></li>
+    <li><b>اختياري:</b> إن لم تعد تحتاج cloudflared:<div class="cmd"><button class="copy">نسخ</button>sudo apt-get remove cloudflared
+sudo rm /etc/apt/sources.list.d/cloudflared.list</div></li>
+  </ol>
+  <div class="box warn"><i class="fa-solid fa-triangle-exclamation"></i><div>انسخ أمر الحذف كما هو. لا تغيّر المسار، ولا تستخدم <span class="en">sudo</span> مع حذف مجلد التجربة.</div></div>
+</div>
+
+<h2><span class="ic"><i class="fa-solid fa-building-shield"></i></span>الجزء (ب): النفق المُدار برابط ثابت</h2>
+<div class="box info"><i class="fa-solid fa-circle-info"></i><div>يحتاج حساب Cloudflare ودومينًا مُضافًا إليها. نستخدم هنا <span class="en">demo.example.com</span> مثالًا؛ ضع دومينك بدلًا منه. الخطوات من وثائق Cloudflare (مراجعة 2026-10-25)، وأسماء القوائم قد تتغير قليلًا مع تحديث اللوحة.</div></div>
+
+<div class="step">
+  <div class="top"><span class="n">1</span><h3>إنشاء النفق</h3><span class="where web"><i class="fa-solid fa-globe"></i> لوحة Cloudflare</span></div>
+  <ol><li><span class="en">Networking › Tunnels</span> ثم <span class="en">Create a tunnel</span>.</li><li>اكتب اسمًا، مثل <span class="en">my-laptop</span>، ثم <span class="en">Create Tunnel</span>.</li><li>اختر نظام التشغيل، وانسخ أمر التثبيت المعروض.</li></ol>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">2</span><h3>تثبيت cloudflared كخدمة على جهازك</h3><span class="where t2"><i class="fa-solid fa-terminal"></i> Terminal</span></div>
+  <p>الأمر الذي تعرضه اللوحة يكون بهذا الشكل؛ انسخه كاملًا من اللوحة:</p>
+  <div class="cmd"><button class="copy">نسخ</button>sudo cloudflared service install <span class="g">&lt;TOKEN&gt;</span></div>
+  <dl><dt>وظيفته</dt><dd>يحوّل cloudflared إلى خدمة نظام تعمل تلقائيًا، ومرتبطة بنفقك عبر الرمز (Token).</dd>
+  <dt>تحقّق</dt><dd><div class="cmd"><button class="copy">نسخ</button>sudo systemctl status cloudflared</div>المتوقع: <span class="en">Active: active (running)</span>. اضغط <span class="en">q</span> للخروج. وفي اللوحة تصبح حالة النفق <span class="en">Healthy</span>.</dd></dl>
+  <div class="box bad"><i class="fa-solid fa-key"></i><div><b>الـ Token سرّ:</b> لا تصوّره، ولا تشاركه، ولا تضعه في ملفات المشروع. إن تسرّب، استخدم <span class="en">Rotate token</span> في صفحة النفق.</div></div>
+</div>
+
+<div class="step">
+  <div class="top"><span class="n">3</span><h3>ربط الساب دومين بالخدمة المحلية</h3><span class="where web"><i class="fa-solid fa-globe"></i> لوحة Cloudflare</span></div>
+  <ol><li>افتح النفق، ثم تبويب <span class="en">Routes</span> › <span class="en">Add route</span> › <span class="en">Published application</span>.</li>
+  <li><b>Subdomain:</b> <span class="en">demo</span> · <b>Domain:</b> اختر دومينك · <b>Service URL:</b> <span class="en">http://localhost:8000</span></li>
+  <li>اضغط <span class="en">Add route</span>. تنشئ Cloudflare سجل DNS من نوع CNAME يوجّه الاسم إلى النفق.</li></ol>
+  <dl><dt>تحقّق</dt><dd>شغّل خادم الخطوة (أ-3)، ثم:<div class="cmd"><button class="copy">نسخ</button>curl -I https://demo.example.com</div>المتوقع: سطر أول فيه <span class="en">200</span>، أو افتح الرابط من الهاتف.</dd></dl>
+</div>
+
+<div class="step" style="border-right-color:#0891B2">
+  <div class="top"><span class="n">4</span><h3>إزالة النفق المُدار بعد التدريب (اختياري)</h3></div>
+  <ol><li>من صفحة النفق احذف الـ Route، ثم احذف النفق.</li><li>على الجهاز أزل الخدمة:<div class="cmd"><button class="copy">نسخ</button>sudo cloudflared service uninstall</div></li></ol>
+</div>
+
+<h2><span class="ic"><i class="fa-solid fa-scale-balanced"></i></span>بيئة التدريب مقابل الإنتاج</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th></th><th>في التدريب (اليوم)</th><th>في الإنتاج (موقع حقيقي)</th></tr></thead>
+  <tbody>
+    <tr><td>من يعرض الموقع؟</td><td><span class="en">python3 -m http.server</span> أو <span class="en">php artisan serve</span></td><td>Nginx/Apache وPHP-FPM عبر HestiaCP</td></tr>
+    <tr><td>التشغيل</td><td>يدوي في Terminal</td><td>خدمات تبدأ تلقائيًا مع السيرفر</td></tr>
+    <tr><td>النفق</td><td>سريع، ورابطه مؤقت</td><td>مُدار، كخدمة نظام، على دومين</td></tr>
+    <tr><td>الجهاز</td><td>لابتوب يُطفأ ويتنقّل</td><td>سيرفر يعمل دائمًا</td></tr>
+    <tr><td>الوصول</td><td>كل من يملك الرابط</td><td>عام، أو محدود بـ Cloudflare Access</td></tr>
+  </tbody>
+</table></div>
+
+<h2 id="trouble"><span class="ic"><i class="fa-solid fa-stethoscope"></i></span>جدول الأعطال</h2>
+<div class="table-wrap"><table>
+  <thead><tr><th style="width:18%">العَرَض</th><th style="width:22%">السبب المحتمل</th><th style="width:28%">خطوة التحقق</th><th>الحل</th></tr></thead>
+  <tbody>
+    <tr><td><span class="en">Address already in use</span> عند تشغيل الخادم</td><td>برنامج آخر يستخدم المنفذ 8000</td><td><span class="en">ss -ltn | grep 8000</span></td><td>أغلق البرنامج الآخر، أو استخدم 8001 وعدّل رابط النفق.</td></tr>
+    <tr><td><span class="en">cloudflared: command not found</span></td><td>التثبيت لم يكتمل</td><td>راجع رسائل <span class="en">apt-get</span> بحثًا عن أخطاء</td><td>أعد خطوات التثبيت بالترتيب.</td></tr>
+    <tr><td>لا يظهر رابط trycloudflare</td><td>لا إنترنت، أو الشبكة تمنع الخروج إلى Cloudflare</td><td>افتح أي موقع؛ اقرأ رسائل الخطأ في Terminal 2</td><td>جرّب شبكة أخرى (مثل نقطة اتصال الهاتف). الشبكات المقيّدة يجب أن تسمح بالخروج على المنفذ 7844.</td></tr>
+    <tr><td>خطأ <span class="en">502</span></td><td>التطبيق متوقف، أو المنفذ/البروتوكول خطأ</td><td>افتح <span class="en">http://localhost:8000</span> على الجهاز نفسه</td><td>شغّل التطبيق، وطابِق المنفذ والبروتوكول في Service URL.</td></tr>
+    <tr><td>خطأ <span class="en">1033</span></td><td>Cloudflare لا تجد اتصال cloudflared سليمًا</td><td>حالة النفق في اللوحة · <span class="en">systemctl status cloudflared</span></td><td>أعد تشغيل الخدمة؛ إن كان النفق سليمًا تحقق من سجل CNAME.</td></tr>
+    <tr><td>النفق <span class="en">Down</span></td><td>توقف cloudflared أو انطفأ الجهاز</td><td>هل الجهاز يعمل؟ هل الخدمة active؟</td><td><span class="en">sudo systemctl restart cloudflared</span></td></tr>
+    <tr><td><span class="en">ERR_TOO_MANY_REDIRECTS</span></td><td>الموقع يحوّل إلى HTTPS والخدمة <span class="en">http://</span></td><td>هل في الموقع تحويل إجباري إلى HTTPS؟</td><td>اجعل Service URL يطابق إعداد الموقع.</td></tr>
+    <tr><td>يظهر موقع آخر أو صفحة افتراضية</td><td>اسم المضيف لا يطابق موقعًا على السيرفر (عدة مواقع في HestiaCP)</td><td>قائمة المواقع في قسم WEB</td><td>أضف الموقع بالاسم العام نفسه، أو اضبط <span class="en">HTTP Host Header</span>.</td></tr>
+    <tr><td>خطأ شهادة <span class="en">x509</span></td><td>اسم الشهادة لا يطابق، أو جهة إصدارها غير موثوقة</td><td>اقرأ نص الخطأ في سجلات النفق</td><td>اضبط <span class="en">Origin Server Name</span> أو أضف الجهة الموثوقة. التعطيل مؤقت فقط.</td></tr>
+    <tr><td>رفض إضافة الـ Route بسبب سجل موجود</td><td>يوجد سجل DNS بنفس الاسم</td><td>قائمة DNS للدومين في Cloudflare</td><td>اختر اسمًا آخر، أو احذف السجل القديم إن لم تعد تحتاجه.</td></tr>
+    <tr><td>Laravel يُنشئ روابط <span class="en">http</span></td><td>التطبيق لا يعرف أن الزائر دخل بـ HTTPS عبر وسيط</td><td>افحص روابط الصفحة</td><td>اضبط <span class="en">APP_URL</span>، وراجع Trusted Proxies في وثائق Laravel.</td></tr>
+  </tbody>
+</table></div>
+
+<h2><span class="ic"><i class="fa-solid fa-book"></i></span>المصادر الرسمية (تمت المراجعة: 2026-10-25)</h2>
+<ul class="src">
+  <li><span>نظرة عامة على Cloudflare Tunnel:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/</li>
+  <li><span>النفق السريع:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/</li>
+  <li><span>إنشاء نفق من اللوحة:</span> https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/</li>
+  <li><span>مستودع الحزم (أوامر التثبيت):</span> https://pkg.cloudflare.com/</li>
+  <li><span>تنزيل cloudflared:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/</li>
+  <li><span>إعدادات التشغيل والخدمة:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/run-parameters/</li>
+  <li><span>إعدادات الخادم الأصلي (Host Header والشهادات):</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/cloudflared-parameters/origin-parameters/</li>
+  <li><span>متطلبات الجدار الناري:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/configure-tunnels/tunnel-with-firewall/</li>
+  <li><span>الأعطال الشائعة:</span> https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/troubleshoot-tunnels/common-errors/</li>
+  <li><span>حماية تطبيق بـ Cloudflare Access:</span> https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/</li>
+</ul>
+<div class="box warn"><i class="fa-solid fa-circle-exclamation"></i><div><b>لم يُتحقق منه في الوثائق المراجَعة:</b> الصيغة الحرفية لأمر <span class="en">cloudflared service install</span> (تؤخذ من اللوحة مباشرة)، وأمر <span class="en">service uninstall</span>، وتفاصيل Trusted Proxies في Laravel. راجعها في مصدرها قبل الاعتماد عليها.</div></div>
+
+<footer>ورقة تطبيق عملي · مادة «فهم الأنفاق في Cloudflare»</footer>
+</div>
+<script>
+document.querySelectorAll('.cmd .copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var c=b.parentNode.cloneNode(true); c.querySelectorAll('.copy,.c').forEach(function(x){x.remove();});
+    var t=c.textContent.trim();
+    var done=function(){b.textContent='تم ✓';b.classList.add('done');setTimeout(function(){b.textContent='نسخ';b.classList.remove('done');},1500);};
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(t).then(done);}
+    else{var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();done();}
+  });
+});
+</script>
+</body>
+</html>

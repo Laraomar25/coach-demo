@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ملخص الأنفاق المرجعي</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--blue:#2563EB;--blue-l:#EFF6FF;--navy:#0F172A;--head:#1E293B;--text:#475569;--muted:#64748B;--card:#F8FAFC;--line:#E2E8F0;--ink:#0B0F19;--ok:#166534;--ok-bg:#F0FDF4;--warn:#92400E;--warn-bg:#FFFBEB}
+*{box-sizing:border-box}
+@page{size:A4;margin:10mm}
+body{margin:0;background:#E2E8F0;font-family:'Cairo',Tahoma,Arial,sans-serif;color:var(--text);font-size:11.5px;line-height:1.55}
+.page{width:210mm;min-height:297mm;margin:16px auto;background:#fff;padding:9mm 10mm;display:flex;flex-direction:column;gap:7px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.top{background:var(--navy);color:#fff;border-radius:8px;padding:10px 16px;display:flex;justify-content:space-between;align-items:center;border-bottom:4px solid var(--blue)}
+.top h1{font-size:19px;margin:0} .top p{margin:0;color:#94A3B8;font-size:11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.blk{border:1px solid var(--line);border-radius:8px;padding:8px 11px;background:var(--card)}
+.blk h2{font-size:13px;color:var(--head);margin:0 0 4px;display:flex;align-items:center;gap:7px}
+.blk h2 i{color:var(--blue)}
+.full{grid-column:1/-1}
+dl{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:0}
+dt{font-weight:700;color:var(--head)} dd{margin:0}
+.en{direction:ltr;unicode-bidi:isolate;font-family:'IBM Plex Mono',monospace;font-size:.92em;color:var(--head)}
+.flow{display:flex;align-items:center;justify-content:space-between;gap:4px;font-size:11px;font-weight:700;color:var(--head)}
+.flow span.s{background:var(--blue-l);border:1px solid #BFDBFE;border-radius:6px;padding:4px 8px;text-align:center;flex:1}
+.flow i{color:var(--blue)}
+table{width:100%;border-collapse:collapse;font-size:10.8px}
+th,td{border-bottom:1px solid var(--line);padding:3px 6px;text-align:right;vertical-align:top}
+th{color:var(--head)} td:first-child{font-weight:700;color:var(--head)}
+.cmd{background:var(--ink);color:#E2E8F0;border-radius:6px;padding:5px 9px;direction:ltr;text-align:left;font:500 10.5px/1.6 'IBM Plex Mono',monospace;margin:3px 0;white-space:pre-wrap}
+.cmd .c{color:#64748B}
+ul{margin:0;padding-inline-start:16px}
+.ok{background:var(--ok-bg);border-color:#BBF7D0} .warn{background:var(--warn-bg);border-color:#FDE68A}
+.src{font-size:9.5px;direction:ltr;text-align:left;color:var(--muted);line-height:1.5}
+@media print{body{background:#fff}.page{margin:0;box-shadow:none;width:auto;min-height:auto;padding:0}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="top"><div><h1>ملخص مرجعي: أنفاق Cloudflare</h1><p>صفحة واحدة للمراجعة بعد التدريب</p></div><i class="fa-solid fa-route" style="font-size:26px;color:#93C5FD"></i></div>
+
+  <div class="grid">
+    <div class="blk"><h2><i class="fa-solid fa-book-open"></i>المصطلحات</h2><dl>
+      <dt>localhost</dt><dd>«هذا الجهاز نفسه» = <span class="en">127.0.0.1</span></dd>
+      <dt>IP محلي</dt><dd>رقم الجهاز داخل الشبكة فقط</dd>
+      <dt>IP عام</dt><dd>رقم شبكتك على الإنترنت</dd>
+      <dt>Port</dt><dd>رقم «الباب» لكل برنامج: 80، 443، 8000</dd>
+      <dt>Domain</dt><dd>اسم الموقع: <span class="en">example.com</span></dd>
+      <dt>Subdomain</dt><dd>اسم فرعي: <span class="en">demo.example.com</span></dd>
+      <dt>DNS</dt><dd>دليل يحوّل الاسم إلى عنوان</dd>
+    </dl></div>
+    <div class="blk"><h2><i class="fa-solid fa-cloud"></i>الأدوات</h2><dl>
+      <dt>Cloudflare</dt><dd>شبكة عالمية تقف بين الزوار والمواقع</dd>
+      <dt>Tunnel</dt><dd>اتصال آمن بين جهازك وCloudflare</dd>
+      <dt>cloudflared</dt><dd>برنامج على جهازك يفتح النفق ويمرّر الطلبات</dd>
+      <dt>Token</dt><dd>مفتاح سري يربط جهازك بنفق مُدار</dd>
+      <dt>Access</dt><dd>يحدد من يُسمح له بالدخول</dd>
+    </dl>
+    <p style="margin:5px 0 0"><b style="color:var(--head)">الفكرة:</b> الاتصال يبدأ من جهازك (صادر)، والطلبات والردود تمر عبره في الاتجاهين؛ فلا نفتح منافذ واردة عادةً.</p></div>
+
+    <div class="blk full"><h2><i class="fa-solid fa-route"></i>رحلة الطلب</h2>
+      <div class="flow"><span class="s">الزائر</span><i class="fa-solid fa-arrow-left"></i><span class="s">DNS ← Cloudflare</span><i class="fa-solid fa-arrow-left"></i><span class="s">النفق</span><i class="fa-solid fa-arrow-left"></i><span class="s">cloudflared</span><i class="fa-solid fa-arrow-left"></i><span class="s">التطبيق <span class="en">localhost:8000</span></span></div>
+      <p style="margin:4px 0 0">والرد يعود بالطريق نفسه. <b style="color:var(--head)">localhost</b> هنا = الجهاز الذي يعمل عليه cloudflared (يختلف مع Docker أو جهاز آخر).</p></div>
+
+    <div class="blk"><h2><i class="fa-solid fa-code-compare"></i>نوعا النفق</h2>
+      <table><tr><th></th><th>سريع</th><th>مُدار</th></tr>
+        <tr><td>الرابط</td><td>مؤقت <span class="en">*.trycloudflare.com</span></td><td>ثابت على دومينك</td></tr>
+        <tr><td>حساب/دومين</td><td>لا</td><td>نعم</td></tr>
+        <tr><td>تلقائي</td><td>لا</td><td>خدمة نظام</td></tr>
+        <tr><td>للـ</td><td>اختبار وتطوير</td><td>مشاريع حقيقية</td></tr></table></div>
+    <div class="blk"><h2><i class="fa-solid fa-terminal"></i>الأوامر الأساسية</h2>
+      <div class="cmd"><span class="c"># تشغيل صفحة تجريبية (Terminal 1)</span>
+python3 -m http.server 8000 --bind 127.0.0.1</div>
+      <div class="cmd"><span class="c"># التحقق من cloudflared ثم نفق سريع (Terminal 2)</span>
+cloudflared --version
+cloudflared tunnel --url http://localhost:8000</div>
+      <div class="cmd"><span class="c"># حالة الخدمة في النفق المُدار</span>
+sudo systemctl status cloudflared</div></div>
+
+    <div class="blk ok"><h2><i class="fa-solid fa-plug"></i>يعمل الموقع فقط إذا عمل معًا</h2>
+      <ul><li>الجهاز</li><li>التطبيق (الخادم)</li><li>cloudflared</li><li>الإنترنت والخروج إلى Cloudflare</li></ul>
+      <p style="margin:4px 0 0">النفق لا يرفع الملفات إلى Cloudflare ولا يشغّل التطبيق. والرابط الثابت ≠ استضافة دائمة. خدمة cloudflared تشغّل النفق لا التطبيق.</p></div>
+    <div class="blk warn"><h2><i class="fa-solid fa-shield-halved"></i>الأمان</h2>
+      <ul><li>الرابط العام = متاح للجميع، حتى لو كان غريبًا.</li><li>التشفير (HTTPS) ≠ المصادقة: استخدم Access لتحديد من يدخل.</li><li>احمِ الـ Token؛ إن تسرّب: Rotate token.</li><li>لا تنشر MySQL أو لوحات الإدارة دون حماية.</li><li>لا تعطّل التحقق من شهادات TLS كحل افتراضي.</li></ul></div>
+
+    <div class="blk full"><h2><i class="fa-solid fa-stethoscope"></i>أشهر الأعطال</h2>
+      <table><tr><th>العَرَض</th><th>السبب</th><th>الحل</th></tr>
+        <tr><td><span class="en">502</span></td><td>التطبيق متوقف أو المنفذ خطأ</td><td>شغّل التطبيق، وطابِق Service URL</td></tr>
+        <tr><td><span class="en">1033</span> / Down</td><td>cloudflared غير متصل</td><td><span class="en">sudo systemctl restart cloudflared</span></td></tr>
+        <tr><td>TOO_MANY_REDIRECTS</td><td>الموقع يفرض HTTPS والخدمة http</td><td>طابِق البروتوكول</td></tr>
+        <tr><td>موقع آخر يظهر</td><td>اسم المضيف لا يطابق (HestiaCP)</td><td>أضف الدومين نفسه أو اضبط HTTP Host Header</td></tr></table>
+      <p style="margin:4px 0 0"><b style="color:var(--head)">قاعدة التشخيص:</b> التطبيق محليًا ← cloudflared ← حالة النفق ← DNS.</p></div>
+  </div>
+
+  <div class="src">Sources (reviewed 2026-10-25): developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/ · …/do-more-with-tunnels/trycloudflare/ · …/troubleshoot-tunnels/common-errors/ · …/configure-tunnels/cloudflared-parameters/origin-parameters/ · pkg.cloudflare.com · developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/self-hosted-public-app/</div>
+</div>
+</body>
+</html>
